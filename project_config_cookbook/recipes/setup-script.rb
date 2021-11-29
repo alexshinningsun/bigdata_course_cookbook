@@ -23,7 +23,7 @@ directory "Create a directory" do
   action :create
 end
 
-file '#{HOMEDIR}/ec2-testing-script/result-*' do
+file '#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}' do
   action :delete
 end
 
