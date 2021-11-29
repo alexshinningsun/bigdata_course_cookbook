@@ -1,4 +1,4 @@
 #!/bin/bash
-echo -e "My hostname is $hostname \a \n"
+echo -e "My hostname is $HOSTNAME \a"
 exit 0
 
