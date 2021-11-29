@@ -1,5 +1,5 @@
 HOMEDIR= "/home/ec2-user"
-instance = search("aws_opsworks_instance").first
+instance = search("aws_opsworks_instance", "self:true").first
 Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
 Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
 Chef::Log.info("********** This instance's public IP address is '#{instance['public_ip']}' **********")
