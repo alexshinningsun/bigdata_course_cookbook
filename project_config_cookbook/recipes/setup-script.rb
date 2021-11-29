@@ -10,9 +10,9 @@ Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' 
 Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
 Chef::Log.info("********** This instance's public IP address is '#{instance['public_ip']}' **********")
 
-user = search("aws_opsworks_user").first
-Chef::Log.info("********** The user's user name is '#{user['username']}' **********")
-Chef::Log.info("********** The user's user ARN is '#{user['iam_user_arn']}' **********")
+#user = search("aws_opsworks_user").first
+#Chef::Log.info("********** The user's user name is '#{user['username']}' **********")
+#Chef::Log.info("********** The user's user ARN is '#{user['iam_user_arn']}' **********")
 
 directory "Create a directory" do
   group "root"
