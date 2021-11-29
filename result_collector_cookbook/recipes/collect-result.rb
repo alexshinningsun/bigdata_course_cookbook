@@ -23,6 +23,7 @@ end
 
 file '#{HOMEDIR}/bigdata_course_cookbook/results/*' do
   action :delete
+  backup false
 end
 
 search("aws_opsworks_instance").each do |instance|
