@@ -1,11 +1,11 @@
 HOMEDIR= "/root/bigdata_course_cookbook"
 TARGET_HOMEDIR="/home/ec2-user"
 
-#stack = search("aws_opsworks_stack","self:true").first
+#stack = search("aws_opsworks_stack").first
 #Chef::Log.info("********** The stack's name is '#{stack['name']}' **********")
 #Chef::Log.info("********** This stack gets its cookbooks from '#{stack['custom_cookbooks_source']['url']}' **********")
 
-layer = search("aws_opsworks_layer", "self:true").first
+layer = search("aws_opsworks_layer").first
 Chef::Log.info("********** The layer's name is '#{layer['name']}' **********")
 
 instance = search("aws_opsworks_instance", "self:true").first
