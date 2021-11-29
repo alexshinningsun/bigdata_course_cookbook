@@ -27,10 +27,9 @@ end
 
 search("aws_opsworks_instance").each do |instance|
   
-  Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
-  Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
-end
-
-#execute "Copy files from testing ec2 to workstation" do
-#  command "scp -i /root/keys/testing123.pem ec2-user@172.31.22.51:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/results/"
-#end 
+  execute "Copy files from testing ec2 to workstation" do
+    command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/results/"
+  end
+  #Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
+  #Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
+end 
