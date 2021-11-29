@@ -8,5 +8,5 @@ Chef::Log.info("********** The user's user name is '#{user['username']}' *******
 Chef::Log.info("********** The user's user ARN is '#{user['iam_user_arn']}' **********")
 
 execute "Run the ec2 testing script" do
-  command "sh ~/ec2-testing-script/ec2-testing.sh > ~/ec2-testing-script/result-#{instance['hostname']}"
+  command "sh ~/ec2-testing-script/ec2-testing.sh > ~/ec2-testing-script/result-'#{instance['hostname']}'"
 end
