@@ -19,7 +19,7 @@ directory "Create a directory" do
   group "root"
   mode "0755"
   owner "ec2-user"
-  path "#HOMEDIR/ec2-testing-script"
+  path "#{HOMEDIR}/ec2-testing-script"
   action :create
 end
 
@@ -28,13 +28,13 @@ file "Create an empty result file" do
   group "root"
   mode "0755"
   owner "ec2-user"
-  path "#HOMEDIR/ec2-testing-script/result-#{instance['hostname']}"
+  path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
 end
 
 cookbook_file "Copy ec2 performance testing script file to home directory" do
   group "root"
   mode "0755"
   owner "ec2-user"
-  path "#HOMEDIR/ec2-testing-script/ec2-testing.sh"
+  path "#{HOMEDIR}/ec2-testing-script/ec2-testing.sh"
   source "ec2-testing.sh"
 end
