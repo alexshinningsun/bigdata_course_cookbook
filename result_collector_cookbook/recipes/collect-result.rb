@@ -13,16 +13,16 @@ Chef::Log.info("********** The instance's hostname is '#{my_instance['hostname']
 Chef::Log.info("********** The instance's ID is '#{my_instance['instance_id']}' **********")
 Chef::Log.info("********** This instance's public IP address is '#{my_instance['public_ip']}' **********")
 
-file '#{HOMEDIR}/bigdata_course_cookbook/results/*' do
-  action :delete
-end
-
 directory "Create a directory" do
   group "root"
   mode "0755"
-  owner "root"
+  owner "ec2-user"
   path "#{HOMEDIR}/bigdata_course_cookbook/results"
   action :create
+end
+
+file '#{HOMEDIR}/bigdata_course_cookbook/results/*' do
+  action :delete
 end
 
 search("aws_opsworks_instance").each do |instance|
