@@ -1,4 +1,4 @@
-HOMEDIR= "/root/bigdata_course_cookbook"
+HOMEDIR= "/home/ec2-user"
 TARGET_HOMEDIR="/home/ec2-user"
 
 stack = search("aws_opsworks_stack").first
@@ -13,7 +13,7 @@ Chef::Log.info("********** The instance's hostname is '#{my_instance['hostname']
 Chef::Log.info("********** The instance's ID is '#{my_instance['instance_id']}' **********")
 Chef::Log.info("********** This instance's public IP address is '#{my_instance['public_ip']}' **********")
 
-file '#{HOMEDIR}/results/*' do
+file '#{HOMEDIR}/bigdata_course_cookbook/results/*' do
   action :delete
 end
 
@@ -21,14 +21,14 @@ directory "Create a directory" do
   group "root"
   mode "0755"
   owner "root"
-  path "#{HOMEDIR}/results"
+  path "#{HOMEDIR}/bigdata_course_cookbook/results"
   action :create
 end
 
 search("aws_opsworks_instance").each do |instance|
   if #{instance['hostname']} != #{my_instance['hostname']}
     execute "Copy files from testing ec2 to workstation" do
-      command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/results/"
+      command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/bigdata_course_cookbook/results/"
     end
   end
   #Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
