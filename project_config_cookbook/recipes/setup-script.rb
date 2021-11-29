@@ -6,7 +6,7 @@ Chef::Log.info("********** This stack gets its cookbooks from '#{stack['custom_c
 layer = search("aws_opsworks_layer").first
 Chef::Log.info("********** The layer's name is '#{layer['name']}' **********")
 
-instance = search("aws_opsworks_instance").first
+instance = search("aws_opsworks_instance", "self:true").first
 Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
 Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
 Chef::Log.info("********** This instance's public IP address is '#{instance['public_ip']}' **********")
@@ -23,10 +23,14 @@ directory "Create a directory" do
   action :create
 end
 
+file '#{HOMEDIR}/ec2-testing-script/result-*' do
+  action :delete
+end
+
 file "Create an empty result file" do
   content ""
   group "root"
-  mode "0755"
+  mode "0766"
   owner "ec2-user"
   path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
 end
