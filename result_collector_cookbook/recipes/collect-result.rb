@@ -8,10 +8,10 @@ Chef::Log.info("********** This stack gets its cookbooks from '#{stack['custom_c
 layer = search("aws_opsworks_layer").first
 Chef::Log.info("********** The layer's name is '#{layer['name']}' **********")
 
-instance = search("aws_opsworks_instance", "self:true").first
-Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
-Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
-Chef::Log.info("********** This instance's public IP address is '#{instance['public_ip']}' **********")
+my_instance = search("aws_opsworks_instance", "self:true").first
+Chef::Log.info("********** The instance's hostname is '#{my_instance['hostname']}' **********")
+Chef::Log.info("********** The instance's ID is '#{my_instance['instance_id']}' **********")
+Chef::Log.info("********** This instance's public IP address is '#{my_instance['public_ip']}' **********")
 
 file '#{HOMEDIR}/results/*' do
   action :delete
@@ -26,9 +26,10 @@ directory "Create a directory" do
 end
 
 search("aws_opsworks_instance").each do |instance|
-  
-  execute "Copy files from testing ec2 to workstation" do
-    command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/results/"
+  if #{instance['hostname']} != #{my_instance['hostname']}
+    execute "Copy files from testing ec2 to workstation" do
+      command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/results/"
+    end
   end
   #Chef::Log.info("********** The instance's hostname is '#{instance['hostname']}' **********")
   #Chef::Log.info("********** The instance's ID is '#{instance['instance_id']}' **********")
