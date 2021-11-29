@@ -26,7 +26,7 @@ directory "Create a directory" do
 end
 
 search("aws_opsworks_instance").each do |instance|
-  if #{instance['hostname']} != #{my_instance['hostname']}
+  if "#{instance['hostname']}" != "#{my_instance['hostname']}"
     execute "Copy files from testing ec2 to workstation" do
       command "scp -i /root/keys/testing123.pem ec2-user@#{instance['private_ip']}:#{TARGET_HOMEDIR}/ec2-testing-script/result-*  #{HOMEDIR}/bigdata_course_cookbook/results/"
     end
