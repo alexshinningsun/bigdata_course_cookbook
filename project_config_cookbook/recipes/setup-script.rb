@@ -25,6 +25,7 @@ end
 
 file "Remove older result" do
   path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
+  backup false
   action :delete
 end
 
