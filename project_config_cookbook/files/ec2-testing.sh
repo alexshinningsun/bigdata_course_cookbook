@@ -1,5 +1,4 @@
 #!/bin/bash
-echo -e "My hostname is $HOSTNAME \a"
-date
+7z b -mmt1
 exit 0
 
