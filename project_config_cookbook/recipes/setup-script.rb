@@ -15,6 +15,18 @@ Chef::Log.info("********** This instance's public IP address is '#{instance['pub
 #Chef::Log.info("********** The user's user name is '#{user['username']}' **********")
 #Chef::Log.info("********** The user's user ARN is '#{user['iam_user_arn']}' **********")
 
+cookbook_file "Copy ec2 performance setup script file to home directory" do
+  group "root"
+  mode "0755"
+  owner "ec2-user"
+  path "#{HOMEDIR}/ec2-testing-script/ec2-setup.sh"
+  source "ec2-setup.sh"
+end
+
+execute "Run the ec2 testing script" do
+  command "sh #{HOMEDIR}/ec2-testing-script/ec2-setup.sh"
+end
+
 directory "Create a directory" do
   group "root"
   mode "0777"
