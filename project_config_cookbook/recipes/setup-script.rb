@@ -27,12 +27,12 @@ execute "Run the ec2 testing script" do
   command "sh #{HOMEDIR}/ec2-testing-script/ec2-setup.sh"
 end
 
-%w( #{HOMEDIR}/ec2-testing-script #{HOMEDIR}/ec2-testing-script/cpu-measurement #{HOMEDIR}/ec2-testing-script/memory-measurement ).each do |each-path|
+%w( #{HOMEDIR}/ec2-testing-script #{HOMEDIR}/ec2-testing-script/cpu-measurement #{HOMEDIR}/ec2-testing-script/memory-measurement ).each do |eachpath|
   directory "Create a directory" do
     group "root"
     mode "0777"
     owner "ec2-user"
-    path "#{each-path}"
+    path "#{eachpath}"
     action :create
   end
 end
@@ -45,13 +45,13 @@ file "Remove older result" do
   action :delete
 end
 
-%w( #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-7z-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-sb-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/memory-measurement/result-sb-#{instance['hostname']} ).each do |each-path|
+%w( #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-7z-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-sb-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/memory-measurement/result-sb-#{instance['hostname']} ).each do |eachpath|
   file "Create an empty result file" do
     content ""
     group "root"
     mode "0777"
     owner "ec2-user"
-    path "#{each-path}"
+    path "#{eachpath}"
   end
 end
 
