@@ -16,7 +16,7 @@ Chef::Log.info("********** This instance's public IP address is '#{my_instance['
 
 directory "Create a directory" do
   group "root"
-  mode "0755"
+  mode "0777"
   owner "ec2-user"
   path "#{HOMEDIR}/bigdata_course_cookbook/results"
   action :create
