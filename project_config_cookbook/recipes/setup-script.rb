@@ -27,13 +27,17 @@ execute "Run the ec2 testing script" do
   command "sh #{HOMEDIR}/ec2-testing-script/ec2-setup.sh"
 end
 
-directory "Create a directory" do
-  group "root"
-  mode "0777"
-  owner "ec2-user"
-  path "#{HOMEDIR}/ec2-testing-script"
-  action :create
+%w( #{HOMEDIR}/ec2-testing-script #{HOMEDIR}/ec2-testing-script/cpu-measurement #{HOMEDIR}/ec2-testing-script/memory-measurement ).each do |each-path|
+  directory "Create a directory" do
+    group "root"
+    mode "0777"
+    owner "ec2-user"
+    path "#{each-path}"
+    action :create
+  end
 end
+
+
 
 file "Remove older result" do
   path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
