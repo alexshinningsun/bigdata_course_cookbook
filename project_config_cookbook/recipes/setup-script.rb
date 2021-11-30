@@ -17,7 +17,7 @@ Chef::Log.info("********** This instance's public IP address is '#{instance['pub
 
 directory "Create a directory" do
   group "root"
-  mode "0755"
+  mode "0777"
   owner "ec2-user"
   path "#{HOMEDIR}/ec2-testing-script"
   action :create
@@ -32,7 +32,7 @@ end
 file "Create an empty result file" do
   content ""
   group "root"
-  mode "0766"
+  mode "0777"
   owner "ec2-user"
   path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
 end
