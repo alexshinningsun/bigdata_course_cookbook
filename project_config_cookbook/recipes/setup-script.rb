@@ -40,17 +40,19 @@ end
 
 
 file "Remove older result" do
-  path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
+  path "#{HOMEDIR}/ec2-testing-script/result-*"
   backup false
   action :delete
 end
 
-file "Create an empty result file" do
-  content ""
-  group "root"
-  mode "0777"
-  owner "ec2-user"
-  path "#{HOMEDIR}/ec2-testing-script/result-#{instance['hostname']}"
+%w( #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-7z-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/cpu-measurement/result-sb-#{instance['hostname']} #{HOMEDIR}/ec2-testing-script/memory-measurement/result-sb-#{instance['hostname']} ).each do |each-path|
+  file "Create an empty result file" do
+    content ""
+    group "root"
+    mode "0777"
+    owner "ec2-user"
+    path "#{each-path}"
+  end
 end
 
 cookbook_file "Copy ec2 performance testing script file to home directory" do
