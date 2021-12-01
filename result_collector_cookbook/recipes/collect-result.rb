@@ -41,15 +41,15 @@ file '#{HOMEDIR}/bigdata_course_cookbook/results/ioping/*' do
   backup false
 end
 
-execute "Remove cpu result files from '#{instance['hostname']}' ec2 to workstation" do
+execute "Remove cpu result files on workstation" do
   command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/cpu-measurement/result-*"
 end
 
-execute "Remove memory result files from '#{instance['hostname']}' ec2 to workstation" do
+execute "Remove memory result files on workstation" do
   command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/memory-measurement/result-*"
 end
 
-execute "Remove ioping result files from '#{instance['hostname']}' ec2 to workstation" do
+execute "Remove ioping result files on workstation" do
   command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/ioping/result-*"
 end
 
