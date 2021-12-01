@@ -41,6 +41,18 @@ file '#{HOMEDIR}/bigdata_course_cookbook/results/ioping/*' do
   backup false
 end
 
+execute "Remove cpu result files from '#{instance['hostname']}' ec2 to workstation" do
+  command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/cpu-measurement/result-*"
+end
+
+execute "Remove memory result files from '#{instance['hostname']}' ec2 to workstation" do
+  command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/memory-measurement/result-*"
+end
+
+execute "Remove ioping result files from '#{instance['hostname']}' ec2 to workstation" do
+  command "rm -rf #{HOMEDIR}/bigdata_course_cookbook/results/ioping/result-*"
+end
+
 search("aws_opsworks_instance").each do |instance|
   if "#{instance['hostname']}" != "#{my_instance['hostname']}"
     
