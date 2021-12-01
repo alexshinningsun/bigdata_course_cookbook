@@ -55,10 +55,10 @@ end
 #  end
 #end
 
-cookbook_file "Copy ec2 performance testing script file to home directory" do
-  group "root"
-  mode "0755"
-  owner "ec2-user"
-  path "#{HOMEDIR}/ec2-testing-script/ec2-testing.sh"
-  source "ec2-testing.sh"
-end
+#cookbook_file "Copy ec2 performance testing script file to home directory" do
+#  group "root"
+#  mode "0755"
+#  owner "ec2-user"
+#  path "#{HOMEDIR}/ec2-testing-script/ec2-testing.sh"
+#  source "ec2-testing.sh"
+#end
