@@ -15,7 +15,7 @@ Chef::Log.info("********** This instance's public IP address is '#{instance['pub
 #Chef::Log.info("********** The user's user name is '#{user['username']}' **********")
 #Chef::Log.info("********** The user's user ARN is '#{user['iam_user_arn']}' **********")
 
-dir_paths = ["#{HOMEDIR}/ec2-testing-script", "#{HOMEDIR}/ec2-testing-script/cpu-measurement", "#{HOMEDIR}/ec2-testing-script/memory-measurement"]
+dir_paths = ["#{HOMEDIR}/ec2-testing-script", "#{HOMEDIR}/ec2-testing-script/cpu-measurement", "#{HOMEDIR}/ec2-testing-script/memory-measurement", "#{HOMEDIR}/ec2-testing-script/ioping"]
 dir_paths.each do |eachpath|
   directory "Create a directory" do
     group "root"
@@ -44,16 +44,16 @@ file "Remove older result" do
   action :delete
 end
 
-file_paths = ["#{HOMEDIR}/ec2-testing-script/cpu-measurement/result-7z-#{instance['hostname']}", "#{HOMEDIR}/ec2-testing-script/cpu-measurement/result-sb-#{instance['hostname']}", "#{HOMEDIR}/ec2-testing-script/memory-measurement/result-sb-#{instance['hostname']}"]
-file_paths.each do |eachpath|
-  file "Create an empty result file" do
-    content ""
-    group "root"
-    mode "0777"
-    owner "ec2-user"
-    path "#{eachpath}"
-  end
-end
+#file_paths = ["#{HOMEDIR}/ec2-testing-script/cpu-measurement/result-7z-#{instance['hostname']}", "#{HOMEDIR}/ec2-testing-script/cpu-measurement/result-sb-#{instance['hostname']}", "#{HOMEDIR}/ec2-testing-script/memory-measurement/result-sb-#{instance['hostname']}"]
+#file_paths.each do |eachpath|
+#  file "Create an empty result file" do
+#    content ""
+#    group "root"
+#    mode "0777"
+#    owner "ec2-user"
+#    path "#{eachpath}"
+#  end
+#end
 
 cookbook_file "Copy ec2 performance testing script file to home directory" do
   group "root"
