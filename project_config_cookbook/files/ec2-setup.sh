@@ -10,7 +10,7 @@ sudo yum -y install sysbench
 
 # install ioping
 sudo yum install ioping -y
-mkdir -p /tmp/ram
+sudo mkdir -p /tmp/ram
 sudo mount -t tmpfs -o size=512M tmpfs /tmp/ram/
 
 exit 0
