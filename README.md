@@ -1,5 +1,5 @@
 # Chef Cookbook for Cloud computing and big data course
-Project cookbook:
+Project cookbook deploy on AWS Opsworks Stack:
 
   `project_config_cookbook's setup-script recipe is aim to setup needed packages and files into target EC2 machine.`
 
